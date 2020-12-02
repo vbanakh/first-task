@@ -27,19 +27,19 @@ function plusMinus(arr) {
     let plus = 0;
     let minus = 0;
     let zero = 0;
-    let n = arr.length;
-    for(let i=0; i<n; i++){
-        if(arr[i] > 0){
+    const arrayLength = arr.length;
+    for (let i = 0; i < arrayLength; i++) {
+        if (arr[i] > 0) {
             plus++;
-        }else if(arr[i] < 0){
+        } else if (arr[i] < 0) {
             minus++;
-        }else{
+        } else {
             zero++;
         }
     }
-    console.log(plus/n);
-    console.log(minus/n);
-    console.log(zero/n);
+    console.log(plus / arrayLength);
+    console.log(minus / arrayLength);
+    console.log(zero / arrayLength);
 }
 
 
