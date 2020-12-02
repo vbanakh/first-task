@@ -23,26 +23,36 @@ process.stdin.on('end', _ => {
 function readLine() {
     return inputString[currentLine++];
 }
+   
+let time = '';
+const timeWords = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty five', 'twenty-six', 'twenty-seven', 'twenty-eight', 'twenty nine'];
+const minutePast = (h, m) => {
+    time = timeWords[m - 1] + ' minute' + (m <= 1 ? '' : 's') + ' past ' + timeWords[h - 1];
+}
+const  minuteTo = (h, m) => {
+    time = timeWords[60 - m - 1] + ' minutes to ' + timeWords[h];
+}
+const quarterTo = h => time = 'quarter to ' + timeWords[h];
+const halfPast = h => time = 'half past ' + timeWords[h - 1];
+const quarterPast = h => time = 'quarter past ' + timeWords[h - 1];
+const equalZero = h => time = timeWords[h - 1] + " o' clock";
 
 // Complete the timeInWords function below.
 function timeInWords(h, m) {
-    const hours = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
-    const minutes = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty five', 'twenty-six', 'twenty-seven', 'twenty-eight', 'twenty nine'];
-    let time = '';
-    if (m == 0) {
-        time = hours[h - 1] + " o' clock";
-    } else if (m == 15) {
-        time = 'quarter past ' + hours[h - 1];
-    } else if (m == 30) {
-        time = 'half past ' + hours[h - 1];
-    } else if (m == 45) {
-        time = 'quarter to ' + hours[h];
+    if (m === 0) {
+        equalZero(h);
+    } else if (m === 15) {
+       quarterPast(h);
+    } else if (m === 30) {
+        halfPast(h);
+    } else if (m === 45) {
+       quarterTo(h);
     } else if (m < 30) {
-        time = minutes[m - 1] + ' minute' + (m <= 1 ? '' : 's') + ' past ' + hours[h - 1];
+        minutePast(h, m);
     } else if (m > 30) {
-        time = minutes[60 - m - 1] + ' minutes to ' + hours[h];
+        minuteTo(h, m);
     }
-    return time
+    return time   
 }
 
 function main() {
